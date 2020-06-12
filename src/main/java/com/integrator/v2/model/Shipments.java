@@ -3,36 +3,41 @@ package com.integrator.v2.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * 
  * @author chanchal prakash
  *
  */
 public class Shipments {
-	private String shipment_number;
+	
+	@JsonProperty("shipment_number")
+	private String shipmentNumber;
 
-    private List<OrderLines> order_lines;
+	@JsonProperty("order_lines")
+    private List<OrderLines> orderLines;
 
-	public String getShipment_number() {
-		return shipment_number;
+
+	public String getShipmentNumber() {
+		return shipmentNumber;
 	}
 
-	public void setShipment_number(String shipment_number) {
-		this.shipment_number = shipment_number;
+	public void setShipmentNumber(String shipmentNumber) {
+		this.shipmentNumber = shipmentNumber;
 	}
 
-	public List<OrderLines> getOrder_lines() {
-		return order_lines;
+	public List<OrderLines> getOrderLines() {
+		return orderLines;
 	}
 
-	public void setOrder_lines(List<OrderLines> order_lines) {
-		this.order_lines = order_lines;
+	public void setOrderLines(List<OrderLines> orderLines) {
+		this.orderLines = orderLines;
 	}
 
 	@Override
 	public String toString() {
-		return "Shipments [shipment_number=" + shipment_number + ", order_lines=" + order_lines + "]";
+		return "Shipments [shipmentNumber=" + shipmentNumber + ", orderLines=" + orderLines + "]";
 	}
-    
 
 }

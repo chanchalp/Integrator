@@ -1,15 +1,19 @@
 package com.integrator.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class OrderResponse {
-	private String order_number;
+	
+	@JsonProperty("order_number")
+	private String orderNumber;
+	
 	private String message;
 	
-	public String getOrder_number() {
-		return order_number;
+	public String getOrderNumber() {
+		return orderNumber;
 	}
-	public void setOrder_number(String order_number) {
-		this.order_number = order_number;
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 	public String getMessage() {
 		return message;

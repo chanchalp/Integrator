@@ -1,7 +1,7 @@
 package com.integrator.v2.model;
 
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
@@ -10,72 +10,65 @@ import java.util.List;
  */
 public class WmsOrder {
 	
-	private String order_id;
+	@JsonProperty("order_id")
+	private String orderId;
 
-    private String shipment_id;
+	@JsonProperty("shipment_id")
+    private String shipmentId;
 
-    private String order_line_id;
+	@JsonProperty("order_line_id")
+    private String orderLineId;
 
-    private String prod_id;
+	@JsonProperty("product_id")
+    private String productId;
 
-    private String payment_mode;
+	@JsonProperty("payment_mode")
+    private String paymentMode;
 
-	public String getOrder_id() {
-		return order_id;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setOrder_id(String order_id) {
-		this.order_id = order_id;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
-	public String getShipment_id() {
-		return shipment_id;
+	public String getShipmentId() {
+		return shipmentId;
 	}
 
-	public void setShipment_id(String shipment_id) {
-		this.shipment_id = shipment_id;
+	public void setShipmentId(String shipmentId) {
+		this.shipmentId = shipmentId;
 	}
 
-	public String getOrder_line_id() {
-		return order_line_id;
+	public String getOrderLineId() {
+		return orderLineId;
 	}
 
-	public void setOrder_line_id(String order_line_id) {
-		this.order_line_id = order_line_id;
+	public void setOrderLineId(String orderLineId) {
+		this.orderLineId = orderLineId;
 	}
 
-	public String getProd_id() {
-		return prod_id;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setProd_id(String prod_id) {
-		this.prod_id = prod_id;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
-	public String getPayment_mode() {
-		return payment_mode;
+	public String getPaymentMode() {
+		return paymentMode;
 	}
 
-	public void setPayment_mode(String payment_mode) {
-		this.payment_mode = payment_mode;
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
 	}
 
 	@Override
 	public String toString() {
-		return "WmsOrder [order_id=" + order_id + ", shipment_id=" + shipment_id + ", order_line_id=" + order_line_id
-				+ ", prod_id=" + prod_id + ", payment_mode=" + payment_mode + "]";
+		return "WmsOrder [orderId=" + orderId + ", shipmentId=" + shipmentId + ", orderLineId=" + orderLineId
+				+ ", productId=" + productId + ", paymentMode=" + paymentMode + "]";
 	}
-    
-	/*
-	 * private List<WmsOrderLines> wmsOrderLines;
-	 * 
-	 * public List<WmsOrderLines> getWmsOrderLines() { return wmsOrderLines; }
-	 * 
-	 * public void setWmsOrderLines(List<WmsOrderLines> wmsOrderLines) {
-	 * this.wmsOrderLines = wmsOrderLines; }
-	 * 
-	 * @Override public String toString() { return "WmsOrder [wmsOrderLines=" +
-	 * wmsOrderLines + "]"; }
-	 */
 
 }

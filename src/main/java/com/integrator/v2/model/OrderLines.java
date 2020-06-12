@@ -1,5 +1,6 @@
 package com.integrator.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
@@ -7,41 +8,45 @@ package com.integrator.v2.model;
  *
  */
 public class OrderLines {
-	private String order_line;
+	
+	@JsonProperty("order_line")
+	private String orderLine;
 
-    private String product_number;
+	@JsonProperty("product_number")
+    private String productNumber;
 
-    private String payment_mode;
+	@JsonProperty("payment_mode")
+    private String paymentMode;
 
-	public String getOrder_line() {
-		return order_line;
+
+	public String getOrderLine() {
+		return orderLine;
 	}
 
-	public void setOrder_line(String order_line) {
-		this.order_line = order_line;
+	public void setOrderLine(String orderLine) {
+		this.orderLine = orderLine;
 	}
 
-	public String getProduct_number() {
-		return product_number;
+	public String getProductNumber() {
+		return productNumber;
 	}
 
-	public void setProduct_number(String product_number) {
-		this.product_number = product_number;
+	public void setProductNumber(String productNumber) {
+		this.productNumber = productNumber;
 	}
 
-	public String getPayment_mode() {
-		return payment_mode;
+	public String getPaymentMode() {
+		return paymentMode;
 	}
 
-	public void setPayment_mode(String payment_mode) {
-		this.payment_mode = payment_mode;
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderLines [order_line=" + order_line + ", product_number=" + product_number + ", payment_mode="
-				+ payment_mode + "]";
+		return "OrderLines [orderLine=" + orderLine + ", productNumber=" + productNumber + ", paymentMode="
+				+ paymentMode + "]";
 	}
-    
 
 }

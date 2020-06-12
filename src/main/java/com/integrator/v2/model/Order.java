@@ -3,22 +3,26 @@ package com.integrator.v2.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * 
  * @author chanchal Prakash
  *
  */
 public class Order {
-	private String order_number;
+	
+	@JsonProperty("order_number")
+	private String orderNumber;
 
     private List<Shipments> shipments;
 
-	public String getOrder_number() {
-		return order_number;
+	public String getOrderNumber() {
+		return orderNumber;
 	}
 
-	public void setOrder_number(String order_number) {
-		this.order_number = order_number;
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 
 	public List<Shipments> getShipments() {
@@ -31,8 +35,9 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [order_number=" + order_number + ", shipments=" + shipments + "]";
+		return "Order [orderNumber=" + orderNumber + ", shipments=" + shipments + "]";
 	}
-    
+
+	
     
 }

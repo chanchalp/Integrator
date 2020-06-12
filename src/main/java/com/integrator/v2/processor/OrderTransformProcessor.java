@@ -9,15 +9,14 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.integrator.v1.bean.Order;
-import com.integrator.v1.bean.OrderLines;
-import com.integrator.v1.bean.Shipments;
-import com.integrator.v1.bean.WmsOrder;
-import com.integrator.v1.service.OrderServiceImpl;
+import com.integrator.v2.model.Order;
+import com.integrator.v2.model.OrderLines;
+import com.integrator.v2.model.Shipments;
+import com.integrator.v2.model.WmsOrder;
 
 public class OrderTransformProcessor implements Processor {
 	
-	public static final Logger LOGGER = Logger.getLogger(OrderServiceImpl.class);
+	public static final Logger LOGGER = Logger.getLogger(OrderTransformProcessor.class);
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -29,23 +28,27 @@ public class OrderTransformProcessor implements Processor {
 			
 			for(Shipments shipments:((Order) o).getShipments()) {
 				
-				for(OrderLines olines: shipments.getOrder_lines()) {
+				for(OrderLines olines: shipments.getOrderLines()) {
 					WmsOrder wmsorder = new WmsOrder();
-					wmsorder.setOrder_id(((Order) o).getOrder_number());
-					wmsorder.setShipment_id(shipments.getShipment_number());
-					wmsorder.setOrder_line_id(olines.getOrder_line());
-					wmsorder.setProd_id(olines.getProduct_number());
-					wmsorder.setPayment_mode(olines.getPayment_mode());
+					wmsorder.setOrderId(((Order) o).getOrderNumber());
+					wmsorder.setShipmentId(shipments.getShipmentNumber());
+					wmsorder.setOrderLineId(olines.getOrderLine());
+					wmsorder.setProductId(olines.getProductNumber());
+					wmsorder.setPaymentMode(olines.getPaymentMode());
 					listWmsOrder.add(wmsorder);
 				}
 				
 			}
 			
 		}
+		
+		
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String json = ow.writeValueAsString(listWmsOrder);
 		System.out.println(json);
 		LOGGER.info("Transforming Request done.");
+		//exchange.getIn().setHeader(Exchange.HTTP_METHOD, "POST");
+		//exchange.getIn().setHeader(Exchange.CONTENT_TYPE, "applicatiton/json");
 		exchange.getIn().setBody(listWmsOrder);
 	}
 

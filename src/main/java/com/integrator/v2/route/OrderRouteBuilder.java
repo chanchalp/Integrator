@@ -1,11 +1,16 @@
 package com.integrator.v2.route;
 
+import java.util.List;
+
 import org.apache.camel.Exchange;
+import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.model.rest.RestConstants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
 import com.integrator.v2.config.IntegratorProperties;
@@ -29,19 +34,17 @@ public class OrderRouteBuilder extends RouteBuilder {
 		// camel servlet configuration
 		restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
 		
+		//restConfiguration().component("servlet").host("localhost").port(9800).bindingMode(RestBindingMode.json);
 
-		// route for REST POST Call
-		/*
-		 * from("file:C:/inboxPOST?noop=true").process(new
-		 * OrderTransformProcessor()).marshal(jsonDataFormat)
-		 * .setHeader(Exchange.HTTP_METHOD, simple("POST"))
-		 * .setHeader(Exchange.CONTENT_TYPE,
-		 * constant("application/json")).to(appProperties.getWmsReceiveOrderApiUrl())
-		 * .process(new OrderProcessor());
-		 */
+	
+		rest("/api/test")
+					.get()
+					.route()
+					.setBody(constant("Hello World!"));
 		
 		//Orders - POST API
-				rest("integrator/api/v2").consumes("application/json")
+				rest("/integrator/api/v2").consumes("application/json")
+					.produces("application/json")
 					.post("/createOrder")
 					.type(Order[].class)
 					.to("direct:processOrders");
@@ -51,11 +54,13 @@ public class OrderRouteBuilder extends RouteBuilder {
 					.process(new OrderTransformProcessor())
 					.marshal(jsonDataFormat)
 					.process(exchange -> {
+						exchange.getOut().setHeader(Exchange.CONTENT_TYPE, constant("applicatiton/json"));
 						exchange.getOut().setBody(exchange.getIn().getBody(String.class));
 					})
 					.setHeader(Exchange.HTTP_METHOD, simple("POST"))
 					.setHeader(Exchange.CONTENT_TYPE, constant("applicatiton/json"))
-					.to(Iproperties.getWmsReceiveOrderApiUrl());
-	}
+					.to(Iproperties.getWmsReceiveOrderApiUrl())
+					.log("Response from WMS: ${body}");
+	}	
 		
 	}
