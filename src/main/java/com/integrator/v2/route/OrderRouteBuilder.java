@@ -50,6 +50,9 @@ public class OrderRouteBuilder extends RouteBuilder {
 				from("direct:processOrders")
 					.process(new OrderTransformProcessor())
 					.marshal(jsonDataFormat)
+					.process(exchange -> {
+						exchange.getOut().setBody(exchange.getIn().getBody(String.class));
+					})
 					.setHeader(Exchange.HTTP_METHOD, simple("POST"))
 					.setHeader(Exchange.CONTENT_TYPE, constant("applicatiton/json"))
 					.to(Iproperties.getWmsReceiveOrderApiUrl());
