@@ -54,11 +54,11 @@ public class OrderRouteBuilder extends RouteBuilder {
 					.process(new OrderTransformProcessor())
 					.marshal(jsonDataFormat)
 					.process(exchange -> {
-						exchange.getOut().setHeader(Exchange.CONTENT_TYPE, constant("applicatiton/json"));
+						//exchange.getOut().setHeader(Exchange.CONTENT_TYPE, constant("application/json"));
 						exchange.getOut().setBody(exchange.getIn().getBody(String.class));
 					})
 					.setHeader(Exchange.HTTP_METHOD, simple("POST"))
-					.setHeader(Exchange.CONTENT_TYPE, constant("applicatiton/json"))
+					.setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
 					.to(Iproperties.getWmsReceiveOrderApiUrl())
 					.log("Response from WMS: ${body}");
 	}	
