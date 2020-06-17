@@ -40,4 +40,6 @@ public class Shipments {
 		return "Shipments [shipmentNumber=" + shipmentNumber + ", orderLines=" + orderLines + "]";
 	}
 
+
+
 }

@@ -15,12 +15,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.integrator.v1.bean.Order;
-import com.integrator.v1.bean.OrderLines;
-import com.integrator.v1.bean.Response;
-import com.integrator.v1.bean.Shipments;
-import com.integrator.v1.bean.WmsOrder;
 import com.integrator.v1.config.AppProperties;
+import com.integrator.v1.model.Order;
+import com.integrator.v1.model.OrderLines;
+import com.integrator.v1.model.Response;
+import com.integrator.v1.model.Shipments;
+import com.integrator.v1.model.WmsOrder;
 
 
 @Service

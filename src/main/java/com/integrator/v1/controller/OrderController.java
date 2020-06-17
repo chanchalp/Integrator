@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.integrator.v1.bean.Order;
-import com.integrator.v1.bean.Response;
-import com.integrator.v1.bean.WmsOrder;
+import com.integrator.v1.model.Order;
+import com.integrator.v1.model.Response;
+import com.integrator.v1.model.WmsOrder;
 import com.integrator.v1.service.IOrderService;
 
 

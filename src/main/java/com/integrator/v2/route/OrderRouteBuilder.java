@@ -1,30 +1,33 @@
 package com.integrator.v2.route;
 
-import java.util.List;
-
+import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
-import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.model.rest.RestBindingMode;
-import org.apache.camel.model.rest.RestConstants;
+import org.apache.camel.spi.RestConfiguration;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.integrator.v2.config.IntegratorProperties;
 import com.integrator.v2.model.Order;
 import com.integrator.v2.model.WmsOrder;
 import com.integrator.v2.processor.OrderTransformProcessor;
 
 @Component
+@JsonSerialize
 public class OrderRouteBuilder extends RouteBuilder {
 	
 	public static final Logger LOGGER = Logger.getLogger(OrderRouteBuilder.class);
 	
 	@Autowired
 	IntegratorProperties Iproperties;
+	
+	/*
+	 * @Autowired CamelContext camelContext;
+	 */
 
 	JacksonDataFormat jsonDataFormat = new JacksonDataFormat(WmsOrder.class);
 	
@@ -33,9 +36,15 @@ public class OrderRouteBuilder extends RouteBuilder {
 		
 		// camel servlet configuration
 		restConfiguration().component("servlet").bindingMode(RestBindingMode.json);
-		
+		/*
+		 * RestConfiguration restConfiguration = new RestConfiguration();
+		 * restConfiguration.setComponent("servlet");
+		 * restConfiguration.setBindingMode(RestConfiguration.RestBindingMode.json);
+		 * restConfiguration.setHost("localhost"); restConfiguration.setPort(9800);
+		 * 
+		 * camelContext.setRestConfiguration(restConfiguration);
+		 */
 		//restConfiguration().component("servlet").host("localhost").port(9800).bindingMode(RestBindingMode.json);
-
 	
 		rest("/api/test")
 					.get()

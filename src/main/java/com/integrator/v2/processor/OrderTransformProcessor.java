@@ -9,11 +9,13 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.integrator.v2.model.Order;
 import com.integrator.v2.model.OrderLines;
 import com.integrator.v2.model.Shipments;
 import com.integrator.v2.model.WmsOrder;
 
+@JsonSerialize
 public class OrderTransformProcessor implements Processor {
 	
 	public static final Logger LOGGER = Logger.getLogger(OrderTransformProcessor.class);
@@ -41,14 +43,11 @@ public class OrderTransformProcessor implements Processor {
 			}
 			
 		}
-		
-		
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		
 		String json = ow.writeValueAsString(listWmsOrder);
 		System.out.println(json);
 		LOGGER.info("Transforming Request done.");
-		//exchange.getIn().setHeader(Exchange.HTTP_METHOD, "POST");
-		//exchange.getIn().setHeader(Exchange.CONTENT_TYPE, "applicatiton/json");
 		exchange.getIn().setBody(listWmsOrder);
 	}
 

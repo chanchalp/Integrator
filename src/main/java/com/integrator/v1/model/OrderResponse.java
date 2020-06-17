@@ -1,4 +1,4 @@
-package com.integrator.v1.bean;
+package com.integrator.v1.model;
 
 
 public class OrderResponse {

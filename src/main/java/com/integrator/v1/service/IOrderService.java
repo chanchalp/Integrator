@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.integrator.v1.bean.Order;
-import com.integrator.v1.bean.Response;
-import com.integrator.v1.bean.WmsOrder;
+import com.integrator.v1.model.Order;
+import com.integrator.v1.model.Response;
+import com.integrator.v1.model.WmsOrder;
 
 
 public interface IOrderService {

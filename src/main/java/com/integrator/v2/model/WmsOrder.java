@@ -1,15 +1,24 @@
 package com.integrator.v2.model;
 
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * 
  * @author chanchal Prakash
  *
  */
-public class WmsOrder {
+@JsonSerialize
+public class WmsOrder implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@JsonProperty("order_id")
 	private String orderId;
 

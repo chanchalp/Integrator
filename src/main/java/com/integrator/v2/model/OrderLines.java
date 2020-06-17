@@ -14,7 +14,7 @@ public class OrderLines {
 
 	@JsonProperty("product_number")
     private String productNumber;
-
+	
 	@JsonProperty("payment_mode")
     private String paymentMode;
 
@@ -48,5 +48,6 @@ public class OrderLines {
 		return "OrderLines [orderLine=" + orderLine + ", productNumber=" + productNumber + ", paymentMode="
 				+ paymentMode + "]";
 	}
+
 
 }

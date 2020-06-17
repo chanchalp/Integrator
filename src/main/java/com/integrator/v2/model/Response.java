@@ -1,8 +1,16 @@
 package com.integrator.v2.model;
 
+import java.io.Serializable;
 
-public class Response {
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
+public class Response implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int responseCode;
 	private Object message;
 	

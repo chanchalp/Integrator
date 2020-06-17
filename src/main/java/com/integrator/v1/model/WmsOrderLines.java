@@ -1,3 +1,4 @@
+package com.integrator.v1.model;
 /*
  * package v1.com.integrator.bean;
  * 
